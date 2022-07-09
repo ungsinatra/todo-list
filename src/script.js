@@ -7,13 +7,22 @@ let list  = document.createElement('li')
 
 function setNewList(){
     let inputValue = input.value;
-    let list = document.createElement('li');
+    let blockDo = document.createElement('div')
+    let checkbox = document.createElement('input');
+    let lable = document.createElement('label');
+    blockDo.className = 'todo__list'
+    checkbox.id = `${inputValue}`
+    checkbox.classList = 'todo__checkgox'
+    lable.setAttribute('for',`${checkbox.id}`)
+    checkbox.setAttribute('type','checkbox')
     if(inputValue ===''){
         alert('Error')
     }else{
-        list.className = 'todo__list'
-        list.textContent = inputValue;
-        listCase.appendChild(list);
+        lable.textContent = inputValue
+        blockDo.appendChild(checkbox)
+        blockDo.appendChild(lable)
+        lable.textContent = inputValue;
+        listCase.appendChild(blockDo);
         input.value = ''    
     }
     return inputValue
