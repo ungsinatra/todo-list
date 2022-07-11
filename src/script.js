@@ -1,14 +1,59 @@
 const add  = document.querySelector('.todo__botton');
 let input  = document.querySelector('.todo__input')
-let listCase  = document.querySelector('.todo__lists');
+let todoList  = document.querySelector('.todo__lists');
 let list  = document.createElement('li')
+// localStorage.removeItem('tasks');//dell prop of localStorage
+let tasks;
+(!localStorage.tasks)?tasks = []:tasks = JSON.parse(localStorage.getItem('tasks'));
+console.log(tasks)
 
+function Task(desc,status=false){
+    this.description = desc,
+    this.isDone = status
+}
 
+const localStorageUPD = ()=>{
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+}
+const htmlTamplates = (task,index)=>{
+    return `
+    <div class="todo__list">
+    <p class="todo__list-title">${task.description}</p>
+    <div class="todo__list-btns">
+      <input type="checkbox" class = 'todo__checkgox'>
+      <button class="todo__btn_wich_del">delete</button>
+    </div>
+    </div>
+    `
+}
 
+const addHTML = ()=>{
+    todoList.innerHTML = '';
+    if(tasks.length>0){
+        tasks.forEach((element,id) => {
+            todoList.innerHTML += htmlTamplates(element,id)
+        });
+
+    }else{
+        console.log('')
+    }
+
+}
+addHTML()
+
+add.addEventListener('click',()=>{
+    tasks.push(new Task(input.value));
+    input.value = ''
+    localStorageUPD();
+    addHTML();
+})
+
+/*
 function setNewList(){
     let inputValue = input.value;
     let blockDo = document.createElement('div')
     let checkbox = document.createElement('input');
+    console.log(checkbox)
     let lable = document.createElement('label');
     blockDo.className = 'todo__list'
     checkbox.id = `${inputValue}`
@@ -47,3 +92,10 @@ function checkList(fc){
 }
 
 add.onclick = checkList(setNewList)
+
+*/
+
+
+
+
+
