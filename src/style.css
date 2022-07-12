@@ -56,6 +56,7 @@ body {
 
 
 }
+/* --- */
 .todo__list {
   
   display: flex;
@@ -75,6 +76,13 @@ body {
  
   font-weight: normal;
   border-radius: 5px;
+}
+
+/* todo__list-active */
+
+.todo__lists-active{
+  background-color: green;
+  opacity: 80%;
 }
   /* }
     <p class="todo__list-title">${task.description}</p>
