@@ -1,52 +1,107 @@
-const add  = document.querySelector('.todo__botton');
-let input  = document.querySelector('.todo__input')
-let todoList  = document.querySelector('.todo__lists');
-let list  = document.createElement('li')
+const add = document.querySelector('.todo__botton');
+let input = document.querySelector('.todo__input')
+let todoList = document.querySelector('.todo__lists');
+let list = document.createElement('li')
 // localStorage.removeItem('tasks');//dell prop of localStorage
 let tasks;
-(!localStorage.tasks)?tasks = []:tasks = JSON.parse(localStorage.getItem('tasks'));
+(!localStorage.tasks) ? tasks = [] : tasks = JSON.parse(localStorage.getItem('tasks'));
 console.log(tasks)
 
-function Task(desc,status=false){
+function Task(desc, status = false) {
     this.description = desc,
-    this.isDone = status
+        this.isDone = status
 }
 
-const localStorageUPD = ()=>{
-    localStorage.setItem('tasks',JSON.stringify(tasks))
+const localStorageUPD = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
-const htmlTamplates = (task,index)=>{
+const htmlTamplates = (task, index) => {
     return `
-    <div class="todo__list">
+    <div class="todo__list ${(task.isDone)?'todo__lists-active':'todo__lists'}">
     <p class="todo__list-title">${task.description}</p>
     <div class="todo__list-btns">
-      <input type="checkbox" class = 'todo__checkgox'>
-      <button class="todo__btn_wich_del">delete</button>
+      <input type="checkbox" onchange = 'checkboxIsDone(${index})'class = 'todo__checkgox' ${task.isDone? 'checked':''}>
+      <button class="todo__btn_wich_del" onclick = dellTask(${index}) >delete</button>
     </div>
     </div>
     `
 }
+let todoListElements ;
 
-const addHTML = ()=>{
+
+const addHTML = () => {
     todoList.innerHTML = '';
-    if(tasks.length>0){
-        tasks.forEach((element,id) => {
-            todoList.innerHTML += htmlTamplates(element,id)
+    if (sortTask()) {
+        tasks.forEach((element, id) => {
+            todoList.innerHTML += htmlTamplates(element, id)
+            todoListElements  = document.querySelectorAll('.todo__list');
         });
 
-    }else{
+    } else {
         console.log('')
     }
 
 }
 addHTML()
 
-add.addEventListener('click',()=>{
-    tasks.push(new Task(input.value));
-    input.value = ''
+add.addEventListener('click', () => {
+    if(input.value !=''){
+        tasks.push(new Task(input.value));
+        input.value = ''
+    }
+        
     localStorageUPD();
     addHTML();
 })
+
+//checkboxChecker
+function checkboxIsDone(index){
+    
+    tasks[index].isDone = !tasks[index].isDone
+    if(tasks[index].isDone){
+        todoListElements[index].classList.add('todo__list-active')
+    }else{
+        todoListElements[index].classList.remove('todo__list-active')
+    }  
+    localStorageUPD()
+    addHTML()
+}
+
+//dell
+
+function dellTask(index){
+    console.log(index)
+    tasks.splice(index,1);
+    localStorageUPD();
+    addHTML()
+}
+
+
+//page down all task is ISDANE = true
+
+function sortTask(){
+    let taskIsDone;
+    let taskIsnDone;
+    taskIsDone = tasks.filter(el=>{
+        return el.isDone
+    })
+    taskIsnDone = tasks.filter(el=>{
+        return !el.isDone
+    })
+    return tasks = [...taskIsnDone,...taskIsDone];
+}
+
+//checkbox
+/*
+function checkboxChecker(task){
+    if(!this.checked){
+    task.isDone = true;
+    todoList.classList.add('.todo__list-active')
+    console.log('done')
+    }
+}
+
+*/
 
 /*
 function setNewList(){
