@@ -17,11 +17,11 @@ const localStorageUPD = () => {
 }
 const htmlTamplates = (task, index) => {
     return `
-    <div class="todo__list ${(task.isDone)?'todo__lists-active':'todo__lists'}">
+    <div class="todo__list ${(task.isDone)?'todo__lists-active':''}">
     <p class="todo__list-title">${task.description}</p>
     <div class="todo__list-btns">
       <input type="checkbox" onchange = 'checkboxIsDone(${index})'class = 'todo__checkgox' ${task.isDone? 'checked':''}>
-      <button class="todo__btn_wich_del" onclick = dellTask(${index}) >delete</button>
+      <div class="todo__btn_wich_del" onclick = dellTask(${index}) ></div>
     </div>
     </div>
     `
