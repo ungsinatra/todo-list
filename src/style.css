@@ -49,8 +49,16 @@ body {
   color: white;
   border-radius: 5px;
 }
+.todo__botton{
+  cursor: pointer;
+  width: 30px;
+  height: 40px;
+
+
+}
 .todo__lists {
   max-width: 400px;
+  width: 100%;
   margin: 0px 0px 0px 0px;
   margin-top: 25px;
 
@@ -58,12 +66,12 @@ body {
 }
 /* --- */
 .todo__list {
-  
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 370px;
-  width: 400px;
+  
+  
   /* height: 45px; */
   background-color: rgba(55, 47, 97, 0.942);
   border-radius: 1px;
@@ -78,22 +86,79 @@ body {
   border-radius: 5px;
 }
 
-/* todo__list-active */
 
 .todo__lists-active{
   background-color: green;
-  opacity: 80%;
+  opacity: 60%;
 }
-  /* }
-    <p class="todo__list-title">${task.description}</p>
-    <div class="btn">
-      <input type="checkbox" class = 'todo__checkgox'>
-      <button class="todo__btn_wich_del">delete</button>
-    </div> */
+
 .todo__list-title{
   margin: 0px 0px 0px 0px;
+  text-overflow: ellipsis;
+  max-width: 300px;
+  width: 100%;
+  overflow:auto;
 }
 
-/* =============checkbox============= */
+/* =============dellBtn============= */
+
+.todo__btn_wich_del{
+  display: block;
+  cursor: pointer;
+  width: 40px;
+  height: 30px;
+  background-image: url('/images/delete.png');
+  border-radius: 5px;
+  border:none;
+  background-size: 100%;
+  background-position: center;
+}
+.todo__btn_wich_del:hover{
+  opacity: 60%;
+  transition: .5s all ease;
+}
+
+/* ==========btn icons============= */
+.todo__botton-logo_place_input{
+  background-image: url('/images/delivery-box.png');
+  display: block;
+  width: 30px;
+  height: 40px;
+  padding-left: 20px;
+  background-size: 100%;
+  background-position: center;
+}
+
+.todo__botton-logo_place_input:hover{
+  opacity: 60%;
+  transition: 0.5s all ease;
+}
+
+/* task bnt */
+
+.todo__list-btns{
+  z-index: 2;
+  display: flex;
+}
 
 
+/* ===================checkbox============ */
+.todo__checkgox{
+  max-width: 20px;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+
+
+/* media */
+
+
+@media screen and (max-width:420px) {
+  .todo{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+}
