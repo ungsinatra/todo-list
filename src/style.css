@@ -73,11 +73,11 @@ body {
   align-items: center;
   justify-content: space-between;
   max-width: 370px;
-  align-items: center;
+
   
   /* height: 45px; */
   background-color: rgba(55, 47, 97, 0.942);
-  border-radius: 1px;
+
   list-style: none;
   margin-top: 3px;
   color: white;
@@ -144,6 +144,7 @@ body {
 .todo__list-btns{
   z-index: 2;
   display: flex;
+  align-items: center;
 }
 
 
