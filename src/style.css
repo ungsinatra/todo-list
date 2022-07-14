@@ -107,7 +107,7 @@ body {
   cursor: pointer;
   width: 40px;
   height: 30px;
-  background-image: url('/images/delete.png');
+  background-image: url('./images/delete.png');
   border-radius: 5px;
   border:none;
   background-size: 100%;
@@ -120,7 +120,7 @@ body {
 
 /* ==========btn icons============= */
 .todo__botton-logo_place_input{
-  background-image: url('/images/delivery-box.png');
+  background-image: url('./images/delivery-box.png');
   display: block;
   width: 30px;
   height: 40px;
